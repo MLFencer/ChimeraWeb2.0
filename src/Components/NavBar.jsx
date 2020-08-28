@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
-  state = {};
+  state = {
+    navItems: [
+      { Text: "Servers", To: "/servers" },
+      { Text: "Forum", To: "/forum" },
+      { Text: "Gallery", To: "/gallery" },
+      { Text: "User List", To: "/userlist" },
+      { Text: "Contact Info", To: "/contact" },
+    ],
+  };
   render() {
     const activeStyle = { color: "rgb(0, 163, 204)" };
     return (
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark container-fluid">
+      <nav class="navbar navbar-expand-md navbar-dark container-fluid">
         <NavLink
-          className="navbar-brand"
+          className="navbar-brand font-weight-bold"
           activeStyle={activeStyle}
           exact
           to="/"
@@ -29,51 +37,9 @@ class NavBar extends Component {
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <NavLink
-                className="nav-link"
-                activeStyle={activeStyle}
-                to="/servers"
-              >
-                Servers
-              </NavLink>
-            </li>
-            <li class="nav-item">
-              <NavLink
-                className="nav-link"
-                activeStyle={activeStyle}
-                to="/forum"
-              >
-                Forum
-              </NavLink>
-            </li>
-            <li class="nav-item">
-              <NavLink
-                className="nav-link"
-                activeStyle={activeStyle}
-                to="/gallery"
-              >
-                Gallery
-              </NavLink>
-            </li>
-            <li class="nav-item">
-              <NavLink
-                className="nav-link"
-                activeStyle={activeStyle}
-                to="/userslist"
-              >
-                User List
-              </NavLink>
-            </li>
-            <li class="nav-item">
-              <NavLink
-                className="nav-link"
-                activeStyle={activeStyle}
-                to="/contact"
-              >
-                Contact Info
-              </NavLink>
-            </li>
+            {this.state.navItems.map((item) =>
+              this.NavButton(item.Text, activeStyle, item.To)
+            )}
           </ul>
           <button
             className="btn btn-secondary my-2 my-sm-0"
@@ -89,6 +55,21 @@ class NavBar extends Component {
       </nav>
     );
   }
+
+  NavButton = (text, activeStyle, to) => {
+    return (
+      <li class="nav-item">
+        <NavLink
+          className="nav-link"
+          activeStyle={activeStyle}
+          style={{ color: "white" }}
+          to={to}
+        >
+          {text}
+        </NavLink>
+      </li>
+    );
+  };
 }
 
 export default NavBar;

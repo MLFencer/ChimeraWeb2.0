@@ -8,19 +8,32 @@ class Header extends Component {
   //state = {};
   render() {
     return (
-      <div>
+      <div
+        className="border border-primary rounded"
+        style={{ height: "auto", margin: 8, marginTop: 10, padding: 8 }}
+      >
         <div className="container">
-          <img src={chimeralogo} style={{ float: "left", width: 150 }} />
-          <div className="page-header">
-            <h1 style={{ color: "rgb(0, 163, 204)", paddingTop: 20 }}>
-              Chimera
-              <small className="text-muted">
-                &nbsp;&nbsp;The best gaming community on the web!
-              </small>
-            </h1>
+          <div className="row justify-content-center align-items-center">
+            <div className="col-3">
+              <img src={chimeralogo} style={{ width: "inherit" }} />
+            </div>
+            <div className="col-7">
+              <div className="row">
+                <div className="col-3">
+                  <h1 className="text-primary">Chimera</h1>
+                </div>
+                <div className="col align-self-center">
+                  <h4 className="text-muted">
+                    The best gaming community on the web!
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 bg-dark border rounded-pill border-primary">
+              <NavBar />
+            </div>
           </div>
         </div>
-        <NavBar />
       </div>
     );
   }
